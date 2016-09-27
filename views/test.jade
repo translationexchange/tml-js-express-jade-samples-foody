@@ -1,0 +1,48 @@
+doctype html
+html
+    head
+        title Foody
+        link(href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700', rel='stylesheet')
+        != tml_link(['/stylesheets/bootstrap.min.css', '/stylesheets/bootstrap.rtl.min.css'])
+        != tml_link(['/stylesheets/style.css', '/stylesheets/style.rtl.css'])
+        != tml_scripts()
+    body(dir='#{tml_current_language.direction()}', data-spy='scroll', data-target='#nav-categories')
+
+        div(style='padding: 20px;')
+            - tml_begin_source("tests")
+
+            p !{ tr("Hello World")  }
+
+            p !{ tr("Hello World", "Another")  }
+
+            p !{ tr("Dear {count::ord}", {user: "Michael"})  }
+
+            p !{ tr("Dear {user}", {user: {object: {gender: "male", first_name: "Michael"}, attribute: 'first_name'}})  }
+
+            p !{ tr("You have [link: {count}] {count | person}", {count: 1, link: {href: "http://www.google.com"}})  }
+            p !{ tr("You have <link>{count}</link> {count | person}", {count: 2, link: {href: "http://www.google.com"}})  }
+            p !{ tr("You have <link>{count}</link> {count | person}", {count: 5, link: {href: "http://www.google.com"}})  }
+
+            p !{ tr("{user | Dear, Dear} {user}", {count: 5})  }
+            p !{ tr("You have {count || message}", {count: 5})  }
+            p !{ tr("You have [indent: {count || message}]", {count: 5, indent: "<span style='color: red'>{$0}</span>"})  }
+
+            - tml_begin_source("tests 2")
+
+            p !{ tr("{user | Born On}:", {user: {gender: "male", first_name: "Michael"}})  }
+
+            p !{ tr("You just won {sum}.", {sum: [10000, "$10,000"]})  }
+
+            p !{ tr("{actor} uploaded {count || photo} to {target::pos} profile.", {count:3, actor: [{gender: "male", first_name: "Michael"}, tr("Michael")], target: [{gender: "female", first_name: "Anna"}, tr("Anna")]})  }
+
+            p !{ tr("Gifts sent to {users}.", {users: [[{gender: "male", first_name: "Michael"}, {gender: "male", first_name: "Peter"}, {gender: "male", first_name: "Alex"}, {gender: "male", first_name: "Anna"}], function(val) { return tr(val.first_name); }, {limit: 2, expandable: true, collapsable: true}]})  }
+
+
+            p !{ tr("Caloboletus calopus, known as the bitter beech bolete, is a fungus of the bolete family, found in Asia, Northern Europe and North America. Appearing in coniferous and deciduous woodland in summer and autumn, the stout mushrooms are attractively coloured, with a beige to olive cap up to 15 cm (6 in) across, yellow pores, and a reddish stalk up to 15 cm (6 in) long and 5 cm (2 in) wide. The pale yellow flesh stains blue when broken or bruised. Christian Persoon first described Boletus calopus in 1801. Modern molecular phylogenetics has shown that it is only distantly related to the type species of Boletus, and it was placed in a new genus as the type species of Caloboletus in 2014. It is not an edible mushroom, rendered unpalatable by its intensely bitter taste, which does not disappear with cooking. Its red stalk distinguishes it from edible species such as Boletus edulis. (Full article...)") }
+
+            - tml_end_source()
+
+            - tml_end_source()
+
+        script(src='/javascripts/jquery.min.js')
+        script(src='/javascripts/bootstrap.min.js')

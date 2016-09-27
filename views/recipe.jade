@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    .content
+      .container
+        .row
+          .col-md-10.col-md-offset-1
+            .row
+              .col-lg-6.col-sm-7
+                a.back-btn(href='/') !{ tr("Back") }
+                .recipe
+                  h2 !{ tr(recipe.name) }
+                  if recipe.preparation
+                    h5 !{ tr("Preparation") }
+                    p!= trh(recipe.preparation)
+                    hr
+                  h5 !{ tr("Directions") }
+                  ol
+                    each dir in recipe.directions
+                      li
+                        p!= trh(dir)
+              .col-sm-5.col-lg-offset-1
+                .panel.panel-default
+                  img.img-responsive(src='#{recipe.image}')
+                  .panel-body
+                    h5 !{ tr("Ingredient List") }
+                    table.table.recipe-table
+                      tbody
+                        each ingredient in recipe.ingredients
+                          tr
+                            //th #{ingredient.quantity}
+                            td
+                              != trh("<span style='font-weight: bold; color: black'>" + ingredient.quantity + " " + (ingredient.measurements ? ingredient.measurements : '') + "</span> " + ingredient.name)
+

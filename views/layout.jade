@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Foody
+
+    link(href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700', rel='stylesheet')
+    != tml_link(['/stylesheets/bootstrap.min.css', '/stylesheets/bootstrap.rtl.min.css'])
+    != tml_link(['/stylesheets/style.css', '/stylesheets/style.rtl.css'])
+
+    != tml_scripts()
+
+  body(dir='#{tml_current_language.direction()}', data-spy='scroll', data-target='#nav-categories')
+    include partials/header
+    block content
+    include partials/footer
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/bootstrap.min.js')
